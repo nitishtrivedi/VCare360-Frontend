@@ -14,3 +14,8 @@
   align-items: center;
   gap: 5px; /* space between logo and text */
 }
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
