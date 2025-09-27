@@ -1,0 +1,46 @@
+<div class="login-container">
+  <div class="login-box">
+    <p class="login-header">Login</p>
+    <p class="login-text">Enter your Username and Password</p>
+    <form [formGroup]="loginForm">
+      <div class="login-form">
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>User Name</mat-label>
+            <input type="text" matInput formControlName="userid" (focus)="clearError()" />
+            <!-- @if(isControlInvalid('userid')) {
+            <mat-error class="popup-error">
+              @if(userid?.hasError('required')) {
+              <span> Username is required. </span>
+              } @if(userid?.hasError('minlength')) {
+              <span> Username must be at least 3 characters long. </span>
+              }
+            </mat-error>
+            } -->
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" (focus)="clearError()" />
+          <!-- <mat-error>
+            <span> Password is required. </span>
+            <span> Password must be at least 4 characters long. </span>
+          </mat-error> -->
+        </mat-form-field>
+        <div class="error-message">
+          {{ errorMessage }}
+        </div>
+      </div>
+      <div class="login-submit-btn">
+        <button matButton="outlined" (click)="submitLogin()">
+          <span [style.display]="!isLoading ? 'inline-block' : 'none'">Login</span>
+          <mat-progress-spinner
+            [diameter]="20"
+            mode="indeterminate"
+            [style.display]="isLoading ? 'inline-block' : 'none'"
+          ></mat-progress-spinner>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

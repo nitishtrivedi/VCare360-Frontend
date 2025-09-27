@@ -1,0 +1,16 @@
+.logo img {
+  height: 80px;
+  width: auto;
+  margin: 5px 15px;
+}
+.header-text {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--primary-color);
+  font-family: var(--primary-font);
+}
+.header .logo {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* space between logo and text */
+}
