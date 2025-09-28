@@ -4,18 +4,19 @@ import { Router } from '@angular/router';
 import { combineLatest, Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [MatButtonModule, MatMenuModule],
+  imports: [MatButtonModule, MatMenuModule, RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.css',
+  standalone: true,
 })
 export class Header implements OnInit, OnDestroy {
   isAuthenticated: boolean = false;
   userRole: string | null = '';
   userName: string | null = '';
-  routerLinkHeader: string = '';
 
   private authSubscription: Subscription[] = [];
 
@@ -31,7 +32,6 @@ export class Header implements OnInit, OnDestroy {
         this.isAuthenticated = isAuth;
         this.userRole = role;
         this.userName = uName;
-        this.routerLinkHeader = isAuth ? '/dashboard' : '';
         if (isAuth) {
           const token = sessionStorage.getItem('userToken');
         } else {

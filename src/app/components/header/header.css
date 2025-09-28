@@ -19,3 +19,6 @@
   align-items: center;
   justify-content: space-between;
 }
+.mat-mdc-menu-item {
+  font-family: var(--primary-font) !important;
+}

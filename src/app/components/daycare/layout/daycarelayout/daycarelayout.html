@@ -1,0 +1,27 @@
+<div class="daycare-container">
+  <!-- MENU -->
+  <div
+    class="sidebar"
+    [class.expanded]="isExpanded"
+    (mouseenter)="expand()"
+    (mouseleave)="collapse()"
+  >
+    <!-- Hamburger Icon -->
+    <div class="menu-toggle" (click)="toggleMenu()">☰</div>
+    <!-- MENU ITEMS -->
+    @if(isExpanded) {
+    <div class="menu-card">
+      <h3 class="menu-title">Day Care Menu</h3>
+      <nav>
+        <a [routerLink]="'/daycare/dashboard'">🏠 Dashboard</a>
+        <a [routerLink]="'/daycare/dashboard'">🏠 Enrollments</a>
+      </nav>
+    </div>
+    }
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

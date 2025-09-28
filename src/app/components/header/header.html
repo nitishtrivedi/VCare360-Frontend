@@ -1,15 +1,23 @@
 <div class="header container">
   <div class="logo">
-    <img src="/vcarelogo2.png" />
+    @if(isAuthenticated) {
+    <img src="/vcarelogo2.png" [routerLink]="'/users/select-service'" />
+    } @if(!isAuthenticated) {
+    <img src="/vcarelogo2.png" [routerLink]="'/login'" />
+    }
     <span class="header-text">VCare 360 Management System</span>
   </div>
   @if(isAuthenticated) {
   <div>
     <button matButton [matMenuTriggerFor]="userMenu">{{ userName }}</button>
-    <mat-menu #userMenu="matMenu">
-      <button mat-menu-item>Profile</button>
+    <mat-menu #userMenu="matMenu" style="font-family: var(--primary-font) !important">
+      <button mat-menu-item [routerLink]="'/users/profile'" routerLinkActive="active">
+        Profile
+      </button>
       @if(userRole === "Owner") {
-      <button mat-menu-item>Manage Users</button>
+      <button mat-menu-item [routerLink]="'/users/manage-users'" routerLinkActive="active">
+        Manage Users
+      </button>
       }
     </mat-menu>
 

@@ -1,1 +1,33 @@
-<p>service-selector works!</p>
+<div class="service-selection-container">
+  <div class="content">
+    <div class="service-selection-header">
+      <h2 style="font-family: var(--primary-font)">
+        <span style="color: var(--primary-color)">Welcome</span>&nbsp;<b
+          style="color: var(--secondary-color)"
+          >{{ userName }} <span style="font-size: 40px">&hearts;</span></b
+        >
+        <p style="font-size: 16px">Please make a selection..</p>
+      </h2>
+    </div>
+    <div class="card-container">
+      <!-- DAYCARE -->
+      <div (click)="onSelect('daycare')">
+        <mat-card class="service-card">
+          <img src="/daycare-logo1.png" alt="Redirect to Day Care" />
+          <mat-card-content>
+            <p>Day Care</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!-- PRESCHOOL -->
+      <div (click)="onSelect('preschool')">
+        <mat-card class="service-card">
+          <img src="/preschool-logo1.png" alt="Redirect to Pre School" />
+          <mat-card-content>
+            <p>Pre-School</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
