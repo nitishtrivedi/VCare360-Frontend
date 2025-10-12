@@ -11,15 +11,33 @@ import { RouterOutlet, RouterLink } from '@angular/router';
   standalone: true,
 })
 export class Daycarelayout {
+  subMenuOpen: { [key: string]: boolean } = {
+    enrollments: false,
+    students: false,
+  };
   isExpanded: boolean = false;
 
   toggleMenu() {
     this.isExpanded = !this.isExpanded;
   }
+
   expand() {
     this.isExpanded = true;
   }
+
   collapse() {
     this.isExpanded = false;
+    // Close all submenus when sidebar collapses
+    Object.keys(this.subMenuOpen).forEach((key) => {
+      this.subMenuOpen[key] = false;
+    });
+  }
+
+  toggleSubmenu(menuName: string) {
+    this.subMenuOpen[menuName] = !this.subMenuOpen[menuName];
+  }
+
+  openSubmenu(menuName: string) {
+    this.subMenuOpen[menuName] = true;
   }
 }

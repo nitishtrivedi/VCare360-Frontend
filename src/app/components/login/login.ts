@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { NgIf } from '@angular/common';
+import { AcademicyearService } from '../../services/academicyear-service';
 
 @Component({
   selector: 'app-login',
@@ -40,6 +41,7 @@ export class Login implements OnInit {
   private authService = inject(AuthService);
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  private ayService = inject(AcademicyearService);
   private cdr = inject(ChangeDetectorRef);
   constructor() {
     this.loginForm = this.fb.group({
@@ -72,7 +74,7 @@ export class Login implements OnInit {
       this.authService.login(this.loginForm.value).subscribe({
         next: (res) => {
           this.isLoading = false;
-          console.log('navigating');
+          this.setAyValues();
           this.router.navigate(['/users/select-service']);
         },
         error: (err: HttpErrorResponse) => {
@@ -99,5 +101,14 @@ export class Login implements OnInit {
 
   clearError() {
     this.errorMessage = '';
+  }
+
+  setAyValues() {
+    this.ayService.checkAndAutoActivateAcademicYear().subscribe({
+      next: (res) => {
+        console.log(res);
+        sessionStorage.setItem('Current-AY', res.name);
+      },
+    });
   }
 }

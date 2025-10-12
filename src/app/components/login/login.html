@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="login-submit-btn">
-        <button matButton="outlined" (click)="submitLogin()">
+        <button matButton="outlined" (click)="submitLogin()" class="all-buttons">
           <span [style.display]="!isLoading ? 'inline-block' : 'none'">Login</span>
           <mat-progress-spinner
             [diameter]="20"

@@ -21,6 +21,6 @@ export class ServiceSelector implements OnInit {
     // } else if (option === 'preschool') {
     //   this.router.navigate(['/preschool/dashboard']);
     // }
-    this.router.navigate([option, 'dashboard']);
+    this.router.navigate([option, 'select-ay']);
   }
 }

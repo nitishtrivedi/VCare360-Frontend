@@ -1,0 +1,27 @@
+<div class="add-enquiry-container">
+  <div class="add-enquiry-header">
+    <h2 class="primary-font">Add <span class="secondary-font">Enquiry</span></h2>
+  </div>
+  <div class="add-enquiry-form">
+    <form [formGroup]="enquiryForm">
+      <table class="enquiry-form-table">
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Academic Year</mat-label>
+              <input type="text" matInput formControlName="academicYear" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Enquiry Date</mat-label>
+              <input type="text" matInput formControlName="enquiryDateField" />
+            </mat-form-field>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>

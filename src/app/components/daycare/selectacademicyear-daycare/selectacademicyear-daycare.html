@@ -1,0 +1,31 @@
+<div class="select-ay-container">
+  <mat-card class="ay-card">
+    <img src="/vcare-selectay-graphic.png" alt="Academic Year" class="ay-image" />
+
+    <h2 class="ay-title">Select Academic Year</h2>
+
+    <mat-form-field appearance="outline" class="ay-dropdown">
+      <mat-label>Academic Year</mat-label>
+      <mat-select [(ngModel)]="selectedYear">
+        @for (year of academicYears; track year.id) {
+        <mat-option [value]="year">
+          {{ year.startDate | date : 'yyyy' }} - {{ year.endDate | date : 'yyyy' }}
+          @if(year.isActive) {
+          <span>( Active )</span>
+          }
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      mat-flat-button
+      color="primary"
+      class="ay-button"
+      [disabled]="!selectedYear"
+      (click)="onSelectAY()"
+    >
+      Continue
+    </button>
+  </mat-card>
+</div>

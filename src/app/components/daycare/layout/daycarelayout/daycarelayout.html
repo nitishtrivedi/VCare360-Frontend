@@ -14,7 +14,46 @@
       <h3 class="menu-title">Day Care Menu</h3>
       <nav>
         <a [routerLink]="'/daycare/dashboard'">🏠 Dashboard</a>
-        <a [routerLink]="'/daycare/dashboard'">🏠 Enrollments</a>
+
+        <!-- ENROLLMENTS MENU -->
+        <div class="menu-item-wrapper">
+          <div
+            class="menu-item"
+            (click)="toggleSubmenu('enrollments')"
+            (mouseenter)="openSubmenu('enrollments')"
+          >
+            <span>📋 Enrollments</span>
+            <span class="arrow" [class.open]="subMenuOpen['enrollments']">▾</span>
+          </div>
+          @if(subMenuOpen['enrollments']) {
+          <div class="submenu">
+            <a [routerLink]="'/daycare/enquiries'">📑 Enquiries</a>
+            <a [routerLink]="'/daycare/applications'">📝 Applications</a>
+            <a [routerLink]="'/daycare/admissions'">✅ Admissions</a>
+            <a [routerLink]="'/daycare/waitlist'">⏳ Waitlist</a>
+          </div>
+          }
+        </div>
+
+        <!-- STUDENTS MENU -->
+        <div class="menu-item-wrapper">
+          <div
+            class="menu-item"
+            (click)="toggleSubmenu('students')"
+            (mouseenter)="openSubmenu('students')"
+          >
+            <span>👶 Students</span>
+            <span class="arrow" [class.open]="subMenuOpen['students']">▾</span>
+          </div>
+          @if(subMenuOpen['students']) {
+          <div class="submenu">
+            <a [routerLink]="'/daycare/students/list'">📋 All Students</a>
+            <a [routerLink]="'/daycare/students/attendance'">✓ Attendance</a>
+            <a [routerLink]="'/daycare/students/medical'">🏥 Medical Records</a>
+            <a [routerLink]="'/daycare/students/progress'">📈 Progress Reports</a>
+          </div>
+          }
+        </div>
       </nav>
     </div>
     }

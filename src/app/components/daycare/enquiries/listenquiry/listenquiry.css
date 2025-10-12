@@ -1,0 +1,10 @@
+.list-enquiry-header h2 {
+  font-family: var(--primary-font);
+  color: var(--primary-color);
+  font-weight: 400;
+}
+.list-enquiry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

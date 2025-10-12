@@ -1,27 +1,46 @@
 <div class="header container">
   <div class="logo">
-    @if(isAuthenticated) {
-    <img src="/vcarelogo2.png" [routerLink]="'/users/select-service'" />
-    } @if(!isAuthenticated) {
-    <img src="/vcarelogo2.png" [routerLink]="'/login'" />
+    @if(isAuthenticated()) {
+    <img src="/vcare-logo2.svg" [routerLink]="'/users/select-service'" />
+    } @else {
+    <img src="/vcare-logo2.svg" [routerLink]="'/login'" />
     }
     <span class="header-text">VCare 360 Management System</span>
   </div>
-  @if(isAuthenticated) {
+  @if(isAuthenticated()) {
   <div>
-    <button matButton [matMenuTriggerFor]="userMenu">{{ userName }}</button>
+    @if (showChangeAY()) {
+    <button
+      matButton
+      #ayMenuTrigger="matMenuTrigger"
+      [matMenuTriggerFor]="ayMenu"
+      class="all-buttons"
+    >
+      <span class="aySpan"><i class="fa fa-calendar"></i></span>
+      <b>&nbsp;&nbsp;{{ selectedAY }}</b>
+    </button>
+    <mat-menu #ayMenu="matMenu" style="font-family: var(--primary-font) !important">
+      <button mat-menu-item class="all-buttons">Change Selected Academic Year</button>
+    </mat-menu>
+    }
+    <button matButton [matMenuTriggerFor]="userMenu" class="all-buttons">{{ userName() }}</button>
     <mat-menu #userMenu="matMenu" style="font-family: var(--primary-font) !important">
       <button mat-menu-item [routerLink]="'/users/profile'" routerLinkActive="active">
         Profile
       </button>
-      @if(userRole === "Owner") {
-      <button mat-menu-item [routerLink]="'/users/manage-users'" routerLinkActive="active">
+      @if(userRole() == "Owner") {
+      <button
+        mat-menu-item
+        [routerLink]="'/users/manage-users'"
+        routerLinkActive="active"
+        class="all-buttons"
+      >
         Manage Users
       </button>
       }
     </mat-menu>
 
-    <button matButton (click)="logout()">Logout</button>
+    <button matButton (click)="logout()" class="all-buttons">Logout</button>
   </div>
   }
 </div>

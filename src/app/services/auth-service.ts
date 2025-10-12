@@ -62,6 +62,9 @@ export class AuthService {
     this.userRoleSubject.next(null);
     this.userIdSubject.next(null);
     this.router.navigate(['/login']);
+
+    sessionStorage.removeItem('Current-AY');
+    sessionStorage.removeItem('Selected-AY');
   }
 
   decodeToken(token: string): any {

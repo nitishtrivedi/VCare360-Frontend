@@ -1,83 +1,353 @@
 .daycare-container {
   display: flex;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* ========== SIDEBAR ========== */
 .sidebar {
-  width: 60px; /* collapsed width */
-  background: #fafafa;
+  width: 60px;
+  background-color: var(--secondary-color);
+  /* background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%); */
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: width 0.3s ease;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
   padding-top: 10px;
   position: relative;
+  z-index: 100;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
 }
 
 .sidebar.expanded {
-  width: 260px; /* expanded width */
+  width: 280px;
   align-items: flex-start;
 }
 
-.menu-toggle {
-  cursor: pointer;
-  font-size: 26px;
-  margin: 10px;
-  user-select: none;
+/* ========== SCROLLBAR FOR SIDEBAR ========== */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
 }
 
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ========== HAMBURGER MENU ========== */
+.menu-toggle {
+  cursor: pointer;
+  font-size: 28px;
+  margin: 15px;
+  user-select: none;
+  color: #ecf0f1;
+  transition: transform 0.3s ease, color 0.2s;
+  padding: 8px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+  color: #3498db;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-toggle:active {
+  transform: scale(0.95);
+}
+
+/* ========== MENU CARD ========== */
 .menu-card {
   margin: 10px;
   padding: 20px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   width: calc(100% - 20px);
-  animation: fadeIn 0.3s ease;
+  animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ========== SCROLLBAR FOR MENU CARD ========== */
+.menu-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu-card::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.menu-card::-webkit-scrollbar-thumb {
+  background: #bdc3c7;
+  border-radius: 10px;
+}
+
+.menu-card::-webkit-scrollbar-thumb:hover {
+  background: #95a5a6;
 }
 
 .menu-title {
-  font-size: 18px;
-  margin-bottom: 15px;
-  font-weight: 600;
-  color: #444;
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 10px;
+  letter-spacing: 0.5px;
 }
 
+/* ========== NAVIGATION ========== */
 nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+nav > a {
+  text-decoration: none;
+  color: #2c3e50;
+  padding: 12px 14px;
+  font-size: 15px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+nav > a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: #3498db;
+  transform: scaleY(0);
+  transition: transform 0.25s ease;
+}
+
+nav > a:hover {
+  background: linear-gradient(90deg, #e3f2fd 0%, #f5f5f5 100%);
+  transform: translateX(6px);
+  color: #2980b9;
+}
+
+nav > a:hover::before {
+  transform: scaleY(1);
+}
+
+nav > a:active {
+  transform: translateX(4px) scale(0.98);
+}
+
+/* ========== MENU ITEM WRAPPER ========== */
+.menu-item-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-nav a {
+/* ========== MENU ITEM (Parent) ========== */
+.menu-item {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-size: 15px;
+  border-radius: 10px;
+  color: #2c3e50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.25s ease;
+  font-weight: 500;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: #e74c3c;
+  transform: scaleY(0);
+  transition: transform 0.25s ease;
+}
+
+.menu-item:hover {
+  background: linear-gradient(90deg, #fff3e0 0%, #f5f5f5 100%);
+  color: #e67e22;
+}
+
+.menu-item:hover::before {
+  transform: scaleY(1);
+}
+
+.menu-item span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ========== ARROW ICON ========== */
+.arrow {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 18px;
+  color: #7f8c8d;
+  font-weight: bold;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+  color: #e74c3c;
+}
+
+/* ========== SUBMENU ========== */
+.submenu {
+  display: flex;
+  flex-direction: column;
+  margin-left: 28px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding-left: 12px;
+  border-left: 2px solid #e0e0e0;
+  animation: slideDown 0.3s ease;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.submenu a {
+  font-size: 14px;
+  padding: 10px 12px;
+  color: #546e7a;
+  font-weight: 500;
+  border-radius: 8px;
+  position: relative;
   text-decoration: none;
-  color: #333;
-  padding: 12px 10px;
-  font-size: 16px;
-  border-radius: 6px;
-  transition: background 0.2s, transform 0.1s;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-nav a:hover {
-  background: #f0f0f0;
-  transform: translateX(4px);
+.submenu a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: #9b59b6;
+  transform: scaleY(0);
+  transition: transform 0.25s ease;
 }
 
+.submenu a:hover {
+  background: linear-gradient(90deg, #f3e5f5 0%, #fafafa 100%);
+  color: #8e44ad;
+  transform: translateX(8px);
+}
+
+.submenu a:hover::before {
+  transform: scaleY(1);
+}
+
+/* ========== CONTENT AREA ========== */
 .content {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  overflow-x: hidden;
+  padding: 30px;
+  background: #e8ebef;
+  height: 100%;
+  min-width: 0;
 }
 
-/* Smooth fade-in for the card */
-@keyframes fadeIn {
+/* ========== ANIMATIONS ========== */
+@keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: translateX(-30px);
   }
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    transform: translateY(0);
+  }
+}
+
+/* ========== SCROLLBAR STYLING ========== */
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: #ecf0f1;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #bdc3c7;
+  border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #95a5a6;
+}
+
+/* ========== UTILITY ========== */
+.menu-list ul li {
+  height: auto !important;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 50px;
+  }
+
+  .sidebar.expanded {
+    width: 240px;
+  }
+
+  .menu-toggle {
+    font-size: 24px;
+  }
+
+  .content {
+    padding: 15px;
   }
 }
