@@ -108,6 +108,7 @@ export class Login implements OnInit {
       next: (res) => {
         console.log(res);
         sessionStorage.setItem('Current-AY', res.name);
+        sessionStorage.setItem('Current-AY-Object', JSON.stringify(res));
       },
     });
   }

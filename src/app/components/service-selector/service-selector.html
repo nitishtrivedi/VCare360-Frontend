@@ -2,14 +2,16 @@
   <div class="content">
     <div class="service-selection-header">
       <h2 style="font-family: var(--primary-font)">
-        <span style="color: var(--primary-color)">Welcome</span>&nbsp;<b
-          style="color: var(--secondary-color)"
-          >{{ userName }} <span style="font-size: 40px">&hearts;</span></b
-        >
-        <p style="font-size: 16px">Please make a selection..</p>
+        <span class="text-focus-in">
+          <span style="color: var(--primary-color)">Welcome</span>&nbsp;<b
+            style="color: var(--secondary-color)"
+            >{{ userName }} <span style="font-size: 40px">&hearts;</span></b
+          >
+        </span>
+        <p style="font-size: 16px" class="text-focus-in">Please make a selection..</p>
       </h2>
     </div>
-    <div class="card-container">
+    <div class="card-container text-focus-in">
       <!-- DAYCARE -->
       <div (click)="onSelect('daycare')">
         <mat-card class="service-card">

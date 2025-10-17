@@ -56,7 +56,6 @@ export class Header implements OnInit, OnDestroy {
     this.authSubscription.push(
       this.router.events.subscribe((e) => {
         if (e instanceof NavigationEnd) {
-          console.log('Navigation detected:', e.urlAfterRedirects);
           this.urlSignal.set(e.urlAfterRedirects);
         }
       })

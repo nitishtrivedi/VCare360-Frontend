@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('./animations.css');
+
 .app-wrapper {
   font-family: 'Inter', sans-serif;
   overflow: hidden;
@@ -47,4 +49,24 @@ body {
 }
 .container::-webkit-scrollbar {
   display: none;
+}
+
+/* Apply to all Material buttons */
+button[mat-button],
+button[mat-raised-button],
+button[mat-flat-button],
+button[mat-stroked-button],
+button[mat-icon-button] {
+  font-family: 'Inter', sans-serif !important;
+  color: var(--primary-color) !important;
+}
+
+/* Hover effect */
+button[mat-button]:hover,
+button[mat-raised-button]:hover,
+button[mat-flat-button]:hover,
+button[mat-stroked-button]:hover,
+button[mat-icon-button]:hover {
+  background-color: #fde6d1 !important;
+  color: var(--primary-color) !important;
 }

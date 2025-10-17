@@ -8,7 +8,7 @@
 /* ========== SIDEBAR ========== */
 .sidebar {
   width: 60px;
-  background-color: var(--secondary-color);
+  background-color: #f8aa61;
   /* background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%); */
   display: flex;
   flex-direction: column;

@@ -31,7 +31,6 @@ export class AuthService {
   userId$: Observable<number | null> = this.userIdSubject.asObservable();
 
   login(credentials: Authentication): Observable<AuthResponse> {
-    console.log(credentials);
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, credentials).pipe(
       tap((response) => {
         if (response && response.token) {

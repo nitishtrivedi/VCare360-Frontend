@@ -1,0 +1,5 @@
+.dashboard-header {
+  font-size: 35px;
+  font-family: var(--primary-font);
+  color: var(--primary-color);
+}

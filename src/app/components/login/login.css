@@ -1,42 +1,93 @@
 .login-container {
+  position: relative; /* important: allows absolutely positioned children */
   min-height: calc(100vh - 100px);
   display: flex;
   justify-content: center; /* horizontal center */
   align-items: center; /* vertical center */
   color: var(--primary-color);
   font-family: var(--primary-font);
+  overflow: hidden; /* hides any overflowing image edges */
 }
 
 .login-box {
   width: 100%;
-  max-width: 350px; /* fixed width */
+  max-width: 350px;
   padding: 30px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px); /* soft blur behind box */
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
+  z-index: 1;
 }
+
 .login-header {
   font-size: 24px;
 }
+
 .login-text {
   font-size: 14px;
 }
+
 .mat-form-field {
   border-color: var(--primary-color);
   border-radius: 5px;
 }
+
 mat-error {
   font-size: 12px;
   font-weight: 500;
-  color: #d32f2f; /* material red */
+  color: #d32f2f;
   margin-top: 2px;
   display: block;
   text-align: left;
   line-height: 1.3;
 }
+
 .error-message {
   margin: 0 10px 10px 10px;
   font-weight: 600;
   color: #d32f2f;
+}
+.bg-image {
+  position: absolute;
+  top: 1%;
+  left: 34%;
+  width: 32%;
+  height: auto;
+  object-fit: contain; /* makes image fill while keeping aspect ratio */
+  z-index: -1; /* pushes it behind all content */
+  opacity: 0.3; /* optional: faint background effect */
+
+  -webkit-animation: bg-image 5s ease-out both;
+  animation: bg-image 5s ease-out both;
+}
+@-webkit-keyframes bg-image {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    -webkit-transform-origin: 50% 16%;
+    transform-origin: 50% 16%;
+  }
+  100% {
+    -webkit-transform: scale(1.25) translateY(-15px);
+    transform: scale(1.25) translateY(-15px);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
+}
+@keyframes bg-image {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    -webkit-transform-origin: 50% 16%;
+    transform-origin: 50% 16%;
+  }
+  100% {
+    -webkit-transform: scale(1.25) translateY(-15px);
+    transform: scale(1.25) translateY(-15px);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
 }
