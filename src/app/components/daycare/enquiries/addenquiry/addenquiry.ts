@@ -114,7 +114,7 @@ export class Addenquiry implements OnInit {
       modeOfInformation: formValue.otherInformation,
       optedForAdmissionForm: formValue.optedForAdmissionForm === 'yes' ? true : false,
       academicYearId: ayID,
-      followUpDate: formValue.academicYear,
+      followUpDate: formValue.followUpDate,
     };
     this.enquiryService.addEnquiry(payload).subscribe({
       next: (res) => {
@@ -127,6 +127,14 @@ export class Addenquiry implements OnInit {
           if (result.isConfirmed) {
             this.router.navigate(['/daycare/enquiries']);
           }
+        });
+      },
+      error: (err) => {
+        Swal.fire({
+          title: 'Error',
+          text: 'Enquiry Could not be added',
+          icon: 'error',
+          confirmButtonColor: 'Ok',
         });
       },
     });

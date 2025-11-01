@@ -1,3 +1,19 @@
 <div>
   <span class="dashboard-header">Welcome to VCare 360 Management Tool</span>
+  <div class="dashboard-container">
+    <div class="progress-cards-div">
+      <div class="enq-progress-div">
+        <mat-card class="enq-stat-card">
+          <div class="enq-title-row">
+            <!-- <mat-icon>menu</mat-icon> -->
+            <span>Enquiries</span>
+          </div>
+          <div class="enq-stat-value">{{ totalEnquiries }}</div>
+          <div class="enq-custom-progress-bar">
+            <div class="enq-custom-progress-fill" [style.width.%]="progressValue"></div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 </div>

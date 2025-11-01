@@ -1,0 +1,208 @@
+<div class="enquiry-followup-container text-focus-in">
+  <div class="enquiry-followup-header">
+    <h2>Enquiry <span style="color: var(--secondary-color)">Follow-Up</span></h2>
+  </div>
+  <div class="header-separator"></div>
+  <div class="enquiry-followup-fields">
+    <table class="enq-followup-table">
+      <tr>
+        <td>
+          Enquirer Name: <b>{{ enquiry?.enquirerName }}</b>
+        </td>
+        <td>
+          Enquirer Mobile: <b>{{ enquiry?.enquirerPhoneNumber }}</b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Program Name: <b>{{ enquiry?.program }}</b>
+        </td>
+        <td>
+          Enquiry Date: <b>{{ enquiry?.enquiryDate }} </b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Gender: <b>{{ enquiry?.gender }}</b>
+        </td>
+        <td>
+          Student Name: <b>{{ enquiry?.name }}</b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="enquiry-followup-tabgroup">
+    <mat-tab-group>
+      <mat-tab label="Follow Up History">
+        <div class="followup-history-tab">
+          <div class="mat-elevation-z4">
+            <table mat-table [dataSource]="dataSource" class="history-tbl">
+              <ng-container matColumnDef="activityDate">
+                <th mat-header-cell *matHeaderCellDef>Activity Date</th>
+                <td mat-cell *matCellDef="let d">{{ d.activityDate }}</td>
+              </ng-container>
+              <ng-container matColumnDef="followUpDate">
+                <th mat-header-cell *matHeaderCellDef>Follow Up Date</th>
+                <td mat-cell *matCellDef="let d">{{ d.followUpDate }}</td>
+              </ng-container>
+              <ng-container matColumnDef="enquiryFollowUpStage">
+                <th mat-header-cell *matHeaderCellDef>Stage</th>
+                <td mat-cell *matCellDef="let d">{{ d.enquiryFollowUpStage }}</td>
+              </ng-container>
+              <ng-container matColumnDef="enquiryFollowUpSubStage">
+                <th mat-header-cell *matHeaderCellDef>Sub Stage</th>
+                <td mat-cell *matCellDef="let d">{{ d.enquiryFollowUpSubstage }}</td>
+              </ng-container>
+              <ng-container matColumnDef="enquiryFollowUpStageReason">
+                <th mat-header-cell *matHeaderCellDef>Stage Reason</th>
+                <td mat-cell *matCellDef="let d">{{ d.enquiryFollowUpReason }}</td>
+              </ng-container>
+              <ng-container matColumnDef="enquiryComment">
+                <th mat-header-cell *matHeaderCellDef>Comments</th>
+                <td mat-cell *matCellDef="let d">{{ d.enquiryComment }}</td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+            <mat-paginator
+              [length]="dataSource.data.length"
+              [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page"
+            >
+            </mat-paginator>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="New Follow Up">
+        <div class="new-followup-container">
+          <form [formGroup]="enquiryFollowUpForm">
+            <table class="followup-form">
+              <tr>
+                <td>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Follow Up Stage</mat-label>
+                    <mat-select
+                      formControlName="followUpReason"
+                      (selectionChange)="onFollowUpStageChange($event.value)"
+                    >
+                      @for(option of followUpStage; track option) {
+                      <mat-option [value]="option">{{ option }}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Sub Stage</mat-label>
+                    <mat-select
+                      formControlName="followUpSubReason"
+                      [disabled]="!selectedStage"
+                      (selectionChange)="onFollowUpSubStageChange($event.value)"
+                    >
+                      @for(sub of followUpSubStage; track sub) {
+                      <mat-option [value]="sub">{{ sub }}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Activity Date</mat-label>
+                    <input matInput formControlName="activityDate" readonly="true" />
+                  </mat-form-field>
+                </td>
+                <td>
+                  @if(showStageReason) {
+                  <mat-form-field appearance="outline">
+                    <mat-label>Stage Reason</mat-label>
+                    <mat-select formControlName="stageReason" placeholder="Select Stage Reason">
+                      @for(reason of stageReasons; track reason) {
+                      <mat-option [value]="reason">{{ reason }}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                  }
+                </td>
+              </tr>
+              @if(showFollowUpRow) {
+              <tr>
+                @if(showAppointmentDatePicker) {
+                <td>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Appointment Visit Date</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="apptDatePicker"
+                      formControlName="appointmentDate"
+                    />
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle
+                      matIconSuffix
+                      [for]="apptDatePicker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #apptDatePicker></mat-datepicker>
+                  </mat-form-field>
+                </td>
+                } @if(showNextActivityDatePicker) {
+                <td>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Next Follow Up Date</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="nextFollowUpDatePicker"
+                      formControlName="nextFollowUpDate"
+                    />
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle
+                      matIconSuffix
+                      [for]="nextFollowUpDatePicker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #nextFollowUpDatePicker></mat-datepicker>
+                  </mat-form-field>
+                </td>
+                }
+                <td>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Next Follow Up Time</mat-label>
+                    <input
+                      matInput
+                      [matTimepicker]="nextFollowUpTimePicker"
+                      formControlName="nextFollowUpTime"
+                    />
+                    <mat-timepicker-toggle
+                      matIconSuffix
+                      [for]="nextFollowUpTimePicker"
+                    ></mat-timepicker-toggle>
+                    <mat-timepicker #nextFollowUpTimePicker></mat-timepicker>
+                  </mat-form-field>
+                </td>
+              </tr>
+              }
+              <tr>
+                <td colspan="2" style="padding-top: 10px">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Comments</mat-label>
+                    <textarea
+                      matInput
+                      placeholder="Leave a comment about the follow up activity"
+                      rows="4"
+                      cols="90"
+                      formControlName="comments"
+                    ></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+          </form>
+
+          <div class="follow-up-submit-btn-div">
+            <button matButton="outlined" (click)="onFollowUpStageSubmit()">Save Stage</button>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

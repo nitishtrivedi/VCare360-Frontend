@@ -1,0 +1,111 @@
+.enquiry-followup-header h2 {
+  font-family: var(--primary-font);
+  font-weight: 400;
+  color: var(--primary-color);
+}
+.enq-followup-table {
+  width: 100%;
+  font-family: var(--primary-font);
+  font-weight: 400;
+  color: var(--primary-color);
+  font-size: 16px;
+}
+.enq-followup-table td {
+  padding: 20px 0 20px 5px;
+}
+.enquiry-followup-fields {
+  margin: 10px 0;
+}
+.header-separator {
+  height: 2px;
+  width: 80%;
+  background-color: var(--primary-color);
+}
+
+::ng-deep .history-tbl .mat-mdc-header-cell,
+::ng-deep .history-tbl .mat-mdc-cell {
+  font-family: var(--primary-font) !important;
+  font-weight: 400 !important;
+  color: var(--primary-color) !important;
+}
+::ng-deep .history-tbl .mat-mdc-cell {
+  border-right: 1px solid var(--primary-color) !important;
+}
+::ng-deep .history-tbl .mat-mdc-header-cell {
+  font-family: var(--primary-font) !important;
+  font-weight: 600 !important;
+  color: var(--primary-color) !important;
+  font-size: 14px !important;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  background-color: #fcdcbe !important;
+  border-bottom: 1px solid var(--primary-color) !important;
+  padding: 18px 16px !important;
+  text-align: center;
+}
+
+::ng-deep .history-tbl .mat-mdc-header-cell:last-child,
+::ng-deep .history-tbl .mat-mdc-cell:last-child {
+  border-right: none !important;
+}
+::ng-deep .history-tbl .mat-mdc-row:last-child .mat-mdc-cell {
+  border-bottom: 1px solid var(--primary-color) !important;
+}
+::ng-deep .history-tbl .mat-mdc-cell {
+  vertical-align: middle !important;
+}
+
+.followup-history-tab {
+  margin-top: 15px;
+}
+
+.followup-form {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  table-layout: fixed;
+}
+
+.followup-form td {
+  padding: 8px;
+  vertical-align: top;
+}
+
+.new-followup-container {
+  margin-top: 15px;
+  padding: 0 20px;
+  overflow-x: hidden;
+}
+
+/* Ensure form fields don't overflow */
+::ng-deep .new-followup-container .mat-mdc-form-field {
+  width: 100%;
+}
+
+::ng-deep .new-followup-container .mat-mdc-text-field-wrapper {
+  width: 100%;
+}
+
+textarea {
+  overflow: hidden;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.follow-up-submit-btn-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Fix tab content overflow */
+::ng-deep .mat-mdc-tab-body-content {
+  overflow-x: hidden !important;
+}
+
+::ng-deep .enquiry-followup-tabgroup {
+  overflow-x: hidden;
+}

@@ -70,3 +70,8 @@ button[mat-icon-button]:hover {
   background-color: #fde6d1 !important;
   color: var(--primary-color) !important;
 }
+.header-separator {
+  height: 2px;
+  width: 80%;
+  background-color: var(--primary-color);
+}
