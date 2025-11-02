@@ -1,0 +1,175 @@
+<div class="add-enquiry-container">
+  <div class="add-enquiry-header">
+    <h2 class="primary-font">Edit <span class="secondary-font">Enquiry</span></h2>
+    <div class="header-separator"></div>
+  </div>
+  <div class="add-enquiry-form">
+    <form [formGroup]="enquiryForm">
+      <table class="enquiry-form-table">
+        <tr>
+          <td colspan="3" style="padding: 0 0 20px 0">
+            <h4><span style="color: var(--secondary-color)">Student</span> Details</h4>
+            <div class="header-separator-mini"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Academic Year</mat-label>
+              <input type="text" matInput formControlName="academicYear" [readonly]="true" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Enquiry Date</mat-label>
+              <input type="text" matInput formControlName="enquiryDateField" [readonly]="true" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Enquiry Added By</mat-label>
+              <input type="text" matInput formControlName="enquiryAddedBy" [readonly]="true" />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <mat-form-field appearance="outline" class="full-width-field">
+              <mat-label>Name of the Child</mat-label>
+              <input type="text" matInput formControlName="childName" />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Date of Birth</mat-label>
+              <input matInput [matDatepicker]="dobPicker" formControlName="childDOB" />
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
+              <mat-datepicker #dobPicker></mat-datepicker>
+            </mat-form-field>
+          </td>
+          <td colspan="2">
+            <span>Gender:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <mat-button-toggle-group
+              name="childGender"
+              formControlName="childGender"
+              class="button-group-toggle"
+            >
+              <mat-button-toggle value="Male">Male</mat-button-toggle>
+              <mat-button-toggle value="Female">Female</mat-button-toggle>
+            </mat-button-toggle-group>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" style="padding: 20px 0">
+            <mat-form-field appearance="outline" class="full-width-field">
+              <mat-label>Program Selected</mat-label>
+              <input type="text" matInput formControlName="program" [readonly]="true" />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" style="padding: 10px 0 20px 0">
+            <h4><span style="color: var(--secondary-color)">Enquirer</span> Details</h4>
+            <div class="header-separator-mini"></div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field appearance="outline" class="half-width-field">
+              <mat-label>Enquirer Name</mat-label>
+              <input type="text" matInput formControlName="enquirerName" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Enquirer E-Mail</mat-label>
+              <input type="text" matInput formControlName="enquirerEmail" />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field appearance="outline" class="half-width-field">
+              <mat-label>Enquirer Phone Number</mat-label>
+              <input type="text" matInput formControlName="enquirerPhoneNumber" />
+            </mat-form-field>
+          </td>
+          <td>
+            <span>&nbsp;</span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <mat-form-field appearance="outline" class="full-width-field">
+              <mat-label>Locality</mat-label>
+              <input type="text" matInput formControlName="enquirerAddress" />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" style="padding: 10px 0 20px 0">
+            <h4><span style="color: var(--secondary-color)">Other</span> Details</h4>
+            <div class="header-separator-mini"></div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <mat-form-field appearance="outline" class="half-width-field">
+              <mat-label>How did you hear about us ?</mat-label>
+              <mat-select formControlName="otherInformation" panelClass="custom-select-panel">
+                @for (option of otherInformationOptions; track otherInformationOptions) {
+                <mat-option [value]="option">
+                  {{ option }}
+                </mat-option>
+                }
+                <!-- <mat-option [disabled]="true" class="other-option">
+                  <div class="other-container">
+                    <input
+                      type="text"
+                      matInput
+                      placeholder="Others"
+                      [formControl]="otherControlOI"
+                      (click)="$event.stopPropagation()"
+                      (keydown.enter)="applyOtherOptionValue()"
+                    />
+                  </div>
+                </mat-option> -->
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Follow Up Date</mat-label>
+              <input matInput [matDatepicker]="fodPicker" formControlName="followUpDate" />
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="fodPicker"></mat-datepicker-toggle>
+              <mat-datepicker #fodPicker></mat-datepicker>
+            </mat-form-field>
+          </td>
+          <td colspan="2">
+            <span>Have they opted for admission form ?&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <mat-button-toggle-group
+              name="optedForAdmissionForm"
+              formControlName="optedForAdmissionForm"
+              class="button-group-toggle"
+            >
+              <mat-button-toggle value="yes">Yes</mat-button-toggle>
+              <mat-button-toggle value="no">No</mat-button-toggle>
+            </mat-button-toggle-group>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+      </table>
+    </form>
+    <div class="enquiry-submit-btn-div">
+      <button matButton="outlined" (click)="submitEnquiry()">Submit Enquiry</button>
+    </div>
+  </div>
+</div>

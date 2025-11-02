@@ -11,7 +11,8 @@ import { Listenquiry } from './components/daycare/enquiries/listenquiry/listenqu
 import { Addenquiry } from './components/daycare/enquiries/addenquiry/addenquiry';
 import { SelectacademicyearDaycare } from './components/daycare/selectacademicyear-daycare/selectacademicyear-daycare';
 import { SelectacademicyearPreschool } from './components/preschool/selectacademicyear-preschool/selectacademicyear-preschool';
-import { EnquiryFollowup } from './components/daycare/enquiry-followup/enquiry-followup';
+import { EnquiryFollowup } from './components/daycare/enquiries/enquiry-followup/enquiry-followup';
+import { Editenquiry } from './components/daycare/enquiries/editenquiry/editenquiry';
 
 export const routes: Routes = [
   {
@@ -60,6 +61,10 @@ export const routes: Routes = [
       {
         path: 'enquiries/add',
         component: Addenquiry,
+      },
+      {
+        path: 'enquiries/edit',
+        component: Editenquiry,
       },
       {
         path: 'enquiries/followup',

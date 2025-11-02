@@ -52,6 +52,10 @@ export class Enquiryservice {
     return this.http.post<Enquiry>(this.apiurl, enquiry);
   }
 
+  editEnquiry(enquiry: Enquiry, id: number): Observable<Enquiry> {
+    return this.http.put<Enquiry>(`${this.apiurl}/${id}`, enquiry);
+  }
+
   getAllEnquiries(): Observable<Enquiry[]> {
     return this.http.get<Enquiry[]>(this.apiurl);
   }

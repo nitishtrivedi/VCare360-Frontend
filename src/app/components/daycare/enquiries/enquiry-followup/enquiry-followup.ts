@@ -1,7 +1,11 @@
 import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
-import { Enquiry, EnquiryDetails, Enquiryservice } from '../../../services/daycare/enquiryservice';
+import {
+  Enquiry,
+  EnquiryDetails,
+  Enquiryservice,
+} from '../../../../services/daycare/enquiryservice';
 import {
   MatTable,
   MatHeaderRow,

@@ -91,27 +91,40 @@
       <ng-container matColumnDef="enquiryFollowUpSubstage">
         <th mat-header-cell *matHeaderCellDef><b>Enquiry Stage</b></th>
         <td mat-cell *matCellDef="let enquiry">
-          {{ enquiry.enquiryDetails.enquiryFollowUpSubstage }}
+          {{
+            enquiry.enquiryDetails?.length
+              ? enquiry.enquiryDetails[enquiry.enquiryDetails.length - 1]?.enquiryFollowUpSubstage
+              : '---'
+          }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="followUpDate">
         <th mat-header-cell *matHeaderCellDef><b>Next Follow Up</b></th>
         <td mat-cell *matCellDef="let enquiry">
-          {{ enquiry.followUpDate | date : 'dd/MM/yyyy' }}
+          {{ enquiry.followUpDate | date : 'dd-MM-yyyy' }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="lastContacted">
         <th mat-header-cell *matHeaderCellDef><b>Last Contacted</b></th>
-        <td mat-cell *matCellDef="let enquiry"></td>
+        <td mat-cell *matCellDef="let enquiry">
+          {{ enquiry.enquiryDetails[enquiry.enquiryDetails.length - 1]?.activityDate }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef><b>Actions</b></th>
         <td mat-cell *matCellDef="let enquiry">
           <div class="actions-cell">
-            <button mat-icon-button matTooltip="Edit"><mat-icon>edit</mat-icon></button>
+            <button
+              mat-icon-button
+              matTooltip="Edit"
+              [routerLink]="'/daycare/enquiries/edit'"
+              [queryParams]="{ id: enquiry.id }"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
             <button mat-icon-button matTooltip="Advance Recipt">
               <mat-icon>receipt</mat-icon>
             </button>
