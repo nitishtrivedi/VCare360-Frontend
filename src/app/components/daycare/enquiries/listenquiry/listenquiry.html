@@ -3,6 +3,61 @@
     <h2>All <span style="color: var(--secondary-color)">Enquiries</span></h2>
     <button matButton class="all-buttons" (click)="addEnquiry()">Add New Enquiry</button>
   </div>
+  <div class="stats-card-div">
+    <div class="interested-enq-div">
+      <mat-card class="interested-enq-card" (click)="filterEnquiriesByStage('Interested')">
+        <div class="interested-enq-title-row">
+          <span>Interested</span>
+        </div>
+        <div class="interested-enq-stat-value">{{ interestedEnquiries }}</div>
+        <div class="interested-enq-custom-progress-bar">
+          <div
+            class="interested-enq-custom-progress-fill"
+            [style.width.%]="interestedEnqProgressValue"
+          ></div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="not-interested-enq-div">
+      <mat-card class="not-interested-enq-card" (click)="filterEnquiriesByStage('Not Interested')">
+        <div class="not-interested-title-row">
+          <span>Not Interested</span>
+        </div>
+        <div class="not-interested-enq-stat-value">{{ notInterestedEnquiries }}</div>
+        <div class="not-interested-enq-custom-progress-bar">
+          <div
+            class="not-interested-enq-custom-progress-fill"
+            [style.width.%]="notInterestedEnqProgressValue"
+          ></div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="need-followup-enq-div">
+      <mat-card class="need-followup-enq-card" (click)="filterEnquiriesByStage('Need Follow Up')">
+        <div class="need-followup-enq-title-row">
+          <span>Need Follow-Up</span>
+        </div>
+        <div class="need-followup-enq-stat-value">{{ needFollowUpEnquiries }}</div>
+        <div class="need-followup-enq-custom-progress-bar">
+          <div
+            class="need-followup-enq-custom-progress-fill"
+            [style.width.%]="needFollowUpEnqProgressValue"
+          ></div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="total-enq-div">
+      <mat-card class="total-enq-card" (click)="resetFilter()">
+        <div class="total-enq-title-row">
+          <span>Total Enquiries</span>
+        </div>
+        <div class="total-enq-stat-value">{{ totalEnquiries }}</div>
+        <div class="total-enq-custom-progress-bar">
+          <div class="total-enq-custom-progress-fill" [style.width.%]="totalEnqProgressValue"></div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
   <div class="mat-elevation-z4 enq-tbl-container">
     <table mat-table [dataSource]="dataSource" class="enq-table">
       <ng-container matColumnDef="count">
@@ -77,6 +132,15 @@
 
       <tr mat-header-row *matHeaderRowDef="tableDisplayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: tableDisplayedColumns"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td
+          class="mat-cell"
+          [attr.colspan]="tableDisplayedColumns.length"
+          style="text-align: center; padding: 20px"
+        >
+          No Records Found
+        </td>
+      </tr>
     </table>
     <mat-paginator
       [length]="dataSource.data.length"

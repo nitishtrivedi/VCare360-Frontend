@@ -26,7 +26,7 @@ export class Dashboard implements OnInit {
   }
 
   get progressValue() {
-    const maxEnquiries = 100; //Change if needed
+    const maxEnquiries = 50; //Change if needed
     return (this.totalEnquiries / maxEnquiries) * 100;
   }
 }

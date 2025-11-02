@@ -65,3 +65,158 @@
   height: 22px !important;
   padding: 0 !important;
 }
+
+/* CARDS CSS */
+.stats-card-div {
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  max-width: 100%;
+}
+
+.interested-enq-div,
+.need-followup-enq-div,
+.total-enq-div,
+.not-interested-enq-div {
+  width: 100%;
+}
+.interested-enq-card,
+.need-followup-enq-card,
+.total-enq-card,
+.not-interested-enq-card {
+  width: 100%;
+  padding: 20px 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #f0f0f0;
+}
+.interested-enq-card:hover,
+.need-followup-enq-card:hover,
+.total-enq-card:hover,
+.not-interested-enq-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  border-color: #f8b270;
+}
+.interested-enq-title-row,
+.need-followup-enq-title-row,
+.total-enq-title-row,
+.not-interested-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-color);
+  font-family: var(--primary-font);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.interested-enq-stat-value,
+.need-followup-enq-stat-value,
+.total-enq-stat-value,
+.not-interested-enq-stat-value {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--primary-color);
+  font-family: var(--primary-font);
+  line-height: 1;
+}
+.interested-enq-custom-progress-bar,
+.need-followup-enq-custom-progress-bar,
+.total-enq-custom-progress-bar,
+.not-interested-enq-custom-progress-bar {
+  width: 100%;
+  height: 12px; /* CHANGE THIS VALUE for height: 8px, 12px, 16px, 20px, etc. */
+
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.interested-enq-custom-progress-fill,
+.need-followup-enq-custom-progress-fill,
+.total-enq-custom-progress-fill,
+.not-interested-enq-custom-progress-fill {
+  height: 100%;
+
+  border-radius: 20px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* CARD PROGRESS COLOR CHANGES */
+.interested-enq-custom-progress-bar {
+  background-color: #dafdd1; /* CHANGE THIS for background color */
+}
+.interested-enq-custom-progress-fill {
+  background: #87f967; /* CHANGE THIS for bar color */
+}
+.not-interested-enq-custom-progress-bar {
+  background-color: #fdcbcb; /* CHANGE THIS for background color */
+}
+.not-interested-enq-custom-progress-fill {
+  background: #f61d1d; /* CHANGE THIS for bar color */
+}
+.need-followup-enq-custom-progress-bar {
+  background-color: #fafdcb; /* CHANGE THIS for background color */
+}
+.need-followup-enq-custom-progress-fill {
+  background: #e7f61d; /* CHANGE THIS for bar color */
+}
+.total-enq-custom-progress-bar {
+  background-color: #fdeddf; /* CHANGE THIS for background color */
+}
+.total-enq-custom-progress-fill {
+  background: var(--secondary-color); /* CHANGE THIS for bar color */
+}
+
+/* RESPONSIVE CARDS */
+@media (min-width: 1400px) {
+  .stats-card-div {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+  }
+
+  .interested-enq-card,
+  .need-followup-enq-card,
+  .total-enq-card,
+  .not-interested-enq-card {
+    padding: 18px 14px;
+  }
+
+  .interested-enq-stat-value,
+  .need-followup-enq-stat-value,
+  .total-enq-stat-value,
+  .not-interested-enq-stat-value {
+    font-size: 32px;
+  }
+}
+@media (min-width: 1200px) {
+  .stats-card-div {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .stats-card-div {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .stats-card-div {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .stats-card-div {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
