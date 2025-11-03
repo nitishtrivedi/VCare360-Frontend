@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { Enquiry, Enquiryservice } from '../../../../services/daycare/enquiryservice';
 import Swal from 'sweetalert2';
+import { DateUtilsService } from '../../../../services/date-utils-service';
 
 @Component({
   selector: 'app-addenquiry',
@@ -53,6 +54,7 @@ export class Addenquiry implements OnInit {
   private router = inject(Router);
   private ayService = inject(AcademicyearService);
   private enquiryService = inject(Enquiryservice);
+  private dateUtils = inject(DateUtilsService);
 
   ngOnInit(): void {}
   /**
@@ -104,7 +106,7 @@ export class Addenquiry implements OnInit {
       enquiryDate: formValue.enquiryDateField,
       enquiryAddedBy: formValue.enquiryAddedBy,
       name: formValue.childName,
-      dateOfBirth: formValue.childDOB,
+      dateOfBirth: this.dateUtils.formatDateForDB(formValue.childDOB),
       gender: formValue.childGender,
       program: formValue.program,
       enquirerName: formValue.enquirerName,
@@ -114,7 +116,7 @@ export class Addenquiry implements OnInit {
       modeOfInformation: formValue.otherInformation,
       optedForAdmissionForm: formValue.optedForAdmissionForm === 'yes' ? true : false,
       academicYearId: ayID,
-      followUpDate: formValue.followUpDate,
+      followUpDate: this.dateUtils.formatDateForDB(formValue.followUpDate),
     };
     this.enquiryService.addEnquiry(payload).subscribe({
       next: (res) => {

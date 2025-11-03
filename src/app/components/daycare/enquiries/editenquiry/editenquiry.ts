@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { formatDate } from '@angular/common';
 import Swal from 'sweetalert2';
+import { DateUtilsService } from '../../../../services/date-utils-service';
 
 @Component({
   selector: 'app-editenquiry',
@@ -47,6 +48,7 @@ export class Editenquiry implements OnInit {
   private ayService = inject(AcademicyearService);
   private enquiryService = inject(Enquiryservice);
   private route = inject(ActivatedRoute);
+  private dateUtils = inject(DateUtilsService);
 
   enquiryId!: number;
 
@@ -92,7 +94,7 @@ export class Editenquiry implements OnInit {
           enquiryDateField: res.enquiryDate,
           enquiryAddedBy: res.enquiryAddedBy,
           childName: res.name,
-          childDOB: res.dateOfBirth,
+          childDOB: this.dateUtils.parseDateFromDB(res.dateOfBirth),
           childGender: res.gender,
           program: res.program,
           enquirerName: res.enquirerName,
@@ -101,7 +103,7 @@ export class Editenquiry implements OnInit {
           enquirerAddress: res.enquirerAddress,
           otherInformation: res.modeOfInformation,
           optedForAdmissionForm: res.optedForAdmissionForm ? 'yes' : 'no',
-          followUpDate: res.followUpDate,
+          followUpDate: this.dateUtils.parseDateFromDB(res.followUpDate),
         });
       },
     });
