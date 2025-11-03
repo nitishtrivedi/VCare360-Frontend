@@ -120,7 +120,7 @@ export class Editenquiry implements OnInit {
       enquiryDate: formValue.enquiryDateField,
       enquiryAddedBy: formValue.enquiryAddedBy,
       name: formValue.childName,
-      dateOfBirth: formValue.childDOB,
+      dateOfBirth: this.dateUtils.formatDateForDB(formValue.childDOB),
       gender: formValue.childGender,
       program: formValue.program,
       enquirerName: formValue.enquirerName,
@@ -130,8 +130,8 @@ export class Editenquiry implements OnInit {
       modeOfInformation: formValue.otherInformation,
       optedForAdmissionForm: formValue.optedForAdmissionForm === 'yes',
       academicYearId: ayID,
-      followUpDate: formValue.followUpDate,
-      enquiryDetails: [], // ✅ must send empty array so backend doesn't break
+      followUpDate: this.dateUtils.formatDateForDB(formValue.followUpDate),
+      enquiryDetails: this.enquiry.enquiryDetails || [], // ✅ must send empty array so backend doesn't break
     };
 
     this.enquiryService.editEnquiry(payload, this.enquiryId).subscribe({

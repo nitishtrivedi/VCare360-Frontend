@@ -45,7 +45,7 @@
             <mat-form-field appearance="outline">
               <mat-label>Date of Birth</mat-label>
               <input matInput [matDatepicker]="dobPicker" formControlName="childDOB" />
-              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
               <mat-datepicker #dobPicker></mat-datepicker>
             </mat-form-field>
@@ -146,7 +146,7 @@
             <mat-form-field appearance="outline">
               <mat-label>Follow Up Date</mat-label>
               <input matInput [matDatepicker]="fodPicker" formControlName="followUpDate" />
-              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="fodPicker"></mat-datepicker-toggle>
               <mat-datepicker #fodPicker></mat-datepicker>
             </mat-form-field>
